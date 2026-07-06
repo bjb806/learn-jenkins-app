@@ -20,17 +20,7 @@ pipeline {
                     ls -la
                 '''
             }
-
-            stage('E2E') {
-                steps {
-                    sh '''
-                        npm install -g serve
-                        serve -s build
-                        npx playwright test
-                    '''
-                }
-
-            }
+            
         }
 
         stage('Test') {
@@ -43,6 +33,15 @@ pipeline {
             }
         }
 
+        stage('E2E') {
+            steps {
+                sh '''
+                    npm install serve
+                    node_modules/.bin/serve -s build
+                    npx playwright test
+                '''
+            }
+        }
     }
 
     post {
