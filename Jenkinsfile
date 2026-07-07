@@ -46,7 +46,8 @@ pipeline {
 
     post {
         always {
-            junit 'jest-results/junit.xml'
+            echo "Pipeline Finished"
+            ///junit 'jest-results/junit.xml'
         }
     }
 }
