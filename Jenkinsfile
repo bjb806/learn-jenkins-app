@@ -8,8 +8,6 @@ pipeline {
 
     stages {
         stage('Build') {
-
-            
             steps {
                 sh '''
                     ls -la
@@ -20,7 +18,6 @@ pipeline {
                     ls -la
                 '''
             }
-            
         }
 
         stage('Test') {
@@ -39,6 +36,15 @@ pipeline {
                     npm install serve
                     node_modules/.bin/serve -s build & sleep 10
                     npx playwright test --reporter=html
+                '''
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh '''
+                    npm install netlify-cil@20.1.1
+                    node_modules/.bin/netlify --version
                 '''
             }
         }
